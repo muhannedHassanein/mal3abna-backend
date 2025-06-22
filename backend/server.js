@@ -17,6 +17,7 @@ app.use("/uploads", express.static(path.join(__dirname, "/uploads")));
 
 // الراوتات
 app.use("/api/users", require("./routes/userRoutes"));
+app.use("/api/pitches", require("./routes/pitchRoutes"));
 
 // راوت افتراضي
 app.get("/", (req, res) => {

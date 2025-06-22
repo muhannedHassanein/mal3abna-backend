@@ -1,9 +1,10 @@
 const User = require("../models/userModel");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+const crypto = require("crypto");
 
 const registerUser = async (req, res) => {
-  const { name, email, password, role } = req.body;
+  const { name, email, password, phone, role } = req.body;
   const image = req.file ? req.file.path : "";
 
   try {
@@ -17,6 +18,7 @@ const registerUser = async (req, res) => {
       name,
       email,
       password: hashedPassword,
+      phone,
       role,
       image
     });
@@ -31,6 +33,7 @@ const registerUser = async (req, res) => {
         id: user._id,
         name: user.name,
         email: user.email,
+        phone: user.phone,
         role: user.role,
         image: user.image
       }
@@ -63,6 +66,7 @@ const loginUser = async (req, res) => {
         id: user._id,
         name: user.name,
         email: user.email,
+        phone: user.phone,
         role: user.role,
         image: user.image
       }
@@ -72,7 +76,6 @@ const loginUser = async (req, res) => {
     res.status(500).json({ message: err.message });
   }
 };
-const crypto = require("crypto");
 
 const forgotPassword = async (req, res) => {
   const { email } = req.body;
@@ -81,14 +84,12 @@ const forgotPassword = async (req, res) => {
     if (!user)
       return res.status(404).json({ message: "User not found" });
 
-    // Generate reset token
     const resetToken = crypto.randomBytes(20).toString("hex");
 
     user.resetToken = resetToken;
-    user.resetTokenExpire = Date.now() + 15 * 60 * 1000; // 15 mins
+    user.resetTokenExpire = Date.now() + 15 * 60 * 1000;
     await user.save();
 
-    // هنا ممكن تبعتله resetToken بالإيميل - لكن مبدئيًا نرجعه في الـ response
     res.status(200).json({
       message: "Reset token created",
       resetToken
@@ -98,6 +99,7 @@ const forgotPassword = async (req, res) => {
     res.status(500).json({ message: err.message });
   }
 };
+
 const resetPassword = async (req, res) => {
   const { resetToken, newPassword } = req.body;
   try {
@@ -121,6 +123,7 @@ const resetPassword = async (req, res) => {
     res.status(500).json({ message: err.message });
   }
 };
+
 const updateUserProfile = async (req, res) => {
   const user = await User.findById(req.user._id);
   if (!user) return res.status(404).json({ message: "User not found" });
@@ -128,9 +131,9 @@ const updateUserProfile = async (req, res) => {
   try {
     user.name = req.body.name || user.name;
     user.email = req.body.email || user.email;
+    user.phone = req.body.phone || user.phone;
     if (req.file) user.image = req.file.path;
 
-    // لو فيه باسورد جديدة
     if (req.body.password) {
       const hashed = await bcrypt.hash(req.body.password, 10);
       user.password = hashed;
@@ -144,6 +147,7 @@ const updateUserProfile = async (req, res) => {
         id: updatedUser._id,
         name: updatedUser.name,
         email: updatedUser.email,
+        phone: updatedUser.phone,
         role: updatedUser.role,
         image: updatedUser.image
       }
