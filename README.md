@@ -40,9 +40,13 @@ PAYMOB_INTEGRATION_ID=your_integration_id
 🛠️ Run Locally
 
 git clone https://github.com/muhannedHassanein/mal3abna-backend.git
+
 cd mal3abna-backend
+
 npm install
+
 npm run dev
+
 
 📄 API Endpoints
 Method	Endpoint	Description	Auth Required
