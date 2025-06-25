@@ -18,24 +18,42 @@ Multer (for file uploads)
 
 backend/
 │
+
 ├── config/          # Database connection
+
 ├── controllers/     # Business logic
+
 ├── middleware/      # Auth and file upload middleware
+
 ├── models/          # Mongoose models
+
 ├── routes/          # API routes
+
 ├── utils/           # Payment utils
+
 ├── uploads/         # User uploaded images
+
 ├── .env             # Environment variables (ignored)
+
 ├── .gitignore
+
 ├── package.json
+
 └── server.js
+
+
 🔑 Environment Variables
 
 MONGO_URI=your_mongo_connection_string
+
 JWT_SECRET=your_jwt_secret
+
 PAYMOB_API_KEY=your_paymob_api_key
+
 PAYMOB_IFRAME_ID=your_iframe_id
+
 PAYMOB_INTEGRATION_ID=your_integration_id
+
 
 🛠️ Run Locally
 
