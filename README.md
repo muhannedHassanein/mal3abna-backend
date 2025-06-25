@@ -46,16 +46,27 @@ npm run dev
 
 📄 API Endpoints
 Method	Endpoint	Description	Auth Required
+
 POST	/api/users/register	Register user	❌
+
 POST	/api/users/login	Login user	❌
+
 PUT	/api/users/update	Update user profile	✅
+
 POST	/api/pitches	Create pitch	✅ (owner)
+
 PUT	/api/pitches/:id	Update pitch	✅ (owner)
+
 DELETE	/api/pitches/:id	Delete pitch	✅ (owner)
+
 GET	/api/pitches	Get all pitches	❌
+
 POST	/api/bookings/:pitchId	Book pitch	✅ (user)
+
 GET	/api/bookings/my-bookings	Get my bookings	✅ (user)
+
 POST	/api/payment/pay	Create payment	✅
+
 
 💳 Payment Flow (Paymob)
 Calculates pitch price based on booking hours.
