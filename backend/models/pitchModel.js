@@ -9,7 +9,7 @@ const pitchSchema = new mongoose.Schema({
   name: { type: String, required: true },
   location: { type: String, required: true },
   pricePerHour: { type: Number, required: true },
-  availableTimes: [{ type: String }], // مثال: ["10:00 AM - 11:00 AM", "4:00 PM - 5:00 PM"]
+  availableTimes: [{ type: String }],
 }, { timestamps: true });
 
 module.exports = mongoose.model("Pitch", pitchSchema);
