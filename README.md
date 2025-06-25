@@ -67,27 +67,45 @@ npm run dev
 
 
 📄 API Endpoints
-Method	Endpoint	Description	Auth Required
 
-POST	/api/users/register	Register user	❌
+*User Routes*
+Method	Endpoint	                     Description	              Auth
 
-POST	/api/users/login	Login user	❌
+POST	  /api/users/register            Register new user	        ❌
 
-PUT	/api/users/update	Update user profile	✅
+POST	  /api/users/login	             Login user	                ❌
 
-POST	/api/pitches	Create pitch	✅ (owner)
+PUT    	/api/users/update              Update user profile	      ✅
 
-PUT	/api/pitches/:id	Update pitch	✅ (owner)
+POST	  /api/users/forgot-password	   Send reset password token	❌
 
-DELETE	/api/pitches/:id	Delete pitch	✅ (owner)
+POST	  /api/users/reset-password	     Reset password with token	❌
 
-GET	/api/pitches	Get all pitches	❌
 
-POST	/api/bookings/:pitchId	Book pitch	✅ (user)
+*Pitch Routes*
+Method	Endpoint	        Description	      Auth
 
-GET	/api/bookings/my-bookings	Get my bookings	✅ (user)
+POST	  /api/pitches	    Add new pitch	    ✅ (owner)
 
-POST	/api/payment/pay	Create payment	✅
+PUT	    /api/pitches/:id	Update pitch	    ✅ (owner)
+
+DELETE	/api/pitches/:id	Delete pitch	    ✅ (owner)
+
+GET	    /api/pitches    	Get all pitches	    ❌
+
+GET	    /api/pitches/:id	Get pitch by ID	    ❌
+
+*Booking Routes*
+Method	Endpoint	                Description	    Auth
+
+POST	  /api/bookings/:pitchId	  Book a pitch	  ✅ (user)
+
+GET	    /api/bookings/my-bookings	Get my bookings	✅ (user)
+
+*Payment Routes (Paymob)*
+Method	Endpoint	        Description	              Auth
+
+POST	  /api/payment/pay	Create a payment session	✅
 
 
 💳 Payment Flow (Paymob)
