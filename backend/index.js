@@ -23,8 +23,9 @@ app.use("/api/bookings", require("./routes/bookingRoutes"));
 app.use("/api/payment", paymentRoutes);
 
 app.get("/", (req, res) => {
-  res.send("API is running...");
+  res.send("API is running......");
 });
+
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server running at http://localhost:${PORT}`));
